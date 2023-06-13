@@ -66,9 +66,10 @@ public class Main {
 
         valid = false;
 
-        System.out.println(event);
+        System.out.println("Il tuo evento: " + event);
 
         while(!valid) {
+            System.out.println("=====================================");
         System.out.println("Quanti posti vuoi prenotare?");
         try {
         int numberTobook = Integer.parseInt(scanner.nextLine());
@@ -86,7 +87,11 @@ public class Main {
 
         valid = false;
         while(!valid) {
-        System.out.println("Quanti posti vuoi disdire?");
+            System.out.println("=====================================");
+        System.out.println("Vuoi cancellare delle prenotazioni? S/N");
+        boolean yes = scanner.nextLine().equalsIgnoreCase("s");
+        if(yes) {
+            System.out.println("Inserisci il numero di prenotazioni da cancellare");
         int numberToCancel = Integer.parseInt(scanner.nextLine());
         try {
         event.cancel(numberToCancel);
@@ -94,9 +99,10 @@ public class Main {
         }
         catch (RuntimeException e) {
             System.out.println("Il numero inserito non è valido");
-        } }
+        } } else valid = true;
+        }
 
-        System.out.println("Adesso ci sono " + event.getBookedSeats() + " posti prenotati, su una capienza di " + event.getMaxSeats() + " posti.");
+        System.out.println("Ci sono " + event.getBookedSeats() + " posti prenotati, su una capienza di " + event.getMaxSeats() + " posti.");
         System.out.println("Posti disponibili: " + (event.getMaxSeats() - event.getBookedSeats()));
         scanner.close();
     }
