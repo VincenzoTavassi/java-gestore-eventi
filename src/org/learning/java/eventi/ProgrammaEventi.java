@@ -41,7 +41,7 @@ public class ProgrammaEventi {
     }
 
     public void resetEvents() {
-        eventList.removeAll(eventList);
+        eventList.clear();
     }
 
     public String listEvents() {
