@@ -18,10 +18,19 @@ public class ProgrammaEventi {
         eventList.add(event);
     }
 
-    public List<Event> listEventsByDate(LocalDate date) {
-        List<Event> filteredList = null;
+    public List<Event> listEventsByDate(String userDate) {
+        LocalDate date = Event.createDate(userDate);
+        List<Event> filteredList = new ArrayList<>();
         for (Event event : eventList) {
-            if (event.getDate() == date) filteredList.add(event);
+            if (event.getDate().isEqual(date)) filteredList.add(event);
+        }
+        return filteredList;
+    }
+
+    public List<Event> listEventsByDate(LocalDate userDate) {
+        List<Event> filteredList = new ArrayList<>();
+        for (Event event : eventList) {
+            if (event.getDate().isEqual(userDate)) filteredList.add(event);
         }
         return filteredList;
     }
@@ -38,8 +47,8 @@ public class ProgrammaEventi {
     public String listEvents() {
         String list = "";
     for (Event event : eventList) {
-        if (event instanceof Concert) list += event.getDate() + " - " + event.getTitle() + " (Concerto)" + "\n";
-        else list += event.getDate() + " - " + event.getTitle() + "\n";
+        if (event instanceof Concert) list += Event.formatDate(event.getDate()) + " - " + event.getTitle() + " (Concerto)" + "\n";
+        else list += Event.formatDate(event.getDate()) + " - " + event.getTitle() + "\n";
     }
     return list;
     }

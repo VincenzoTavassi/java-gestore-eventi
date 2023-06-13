@@ -66,7 +66,7 @@ public class Event {
     // TO STRING OVERRIDE
     @Override
     public String toString() {
-        return "Event: " + formatDate(date) + '-' + " " + title;
+        return "Evento: " + formatDate(date) + " -" + " " + title;
     }
 
     // EVENT BOOKING METHODS
@@ -121,9 +121,6 @@ public class Event {
         int day = Integer.parseInt(dateElements[0]);
         int month = Integer.parseInt(dateElements[1]);
         int year = Integer.parseInt((dateElements[2]));
-        if (day > 31 || day < 1) throw new RuntimeException("Invalid day");
-        if (month > 12 || month < 1) throw new RuntimeException("Invalid month");
-        if (year < 0) throw new RuntimeException("Invalid year");
         return LocalDate.of(year, month, day);
 
     }

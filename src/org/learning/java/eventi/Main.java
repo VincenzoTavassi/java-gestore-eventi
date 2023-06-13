@@ -14,20 +14,21 @@ public class Main {
         Event evento1 = new Event("Sai come va?", LocalDate.now().plusDays(2), 300);
         Event evento3 = new Event("tutto bene grazie", LocalDate.now().plusDays(3), 200);
 
-        ProgrammaEventi nuovaLista = new ProgrammaEventi("Lista degli eventi 2023");
-        nuovaLista.addEvent(concerto);
-        nuovaLista.addEvent(concerto2);
-        nuovaLista.addEvent(evento1);
-        nuovaLista.addEvent(evento3);
-        System.out.println(nuovaLista.listEvents());
-        System.out.println(nuovaLista.countEvents());
-        nuovaLista.resetEvents();
-        System.out.println(nuovaLista.countEvents());
+//        ProgrammaEventi nuovaLista = new ProgrammaEventi("Lista degli eventi 2023");
+//        nuovaLista.addEvent(concerto);
+//        nuovaLista.addEvent(concerto2);
+//        nuovaLista.addEvent(evento1);
+//        nuovaLista.addEvent(evento3);
+//        System.out.println(nuovaLista.listEventsByDate("15/06/2023"));
+//        System.out.println(nuovaLista.listEvents());
+//        System.out.println(nuovaLista.countEvents());
+//        nuovaLista.resetEvents();
+//        System.out.println(nuovaLista.countEvents());
+//
+//        System.out.println(concerto.getFormattedPrice());
+//        System.out.println(concerto.getFormattedDate());
+//        System.out.println(concerto);
 
-
-        System.out.println(concerto.getFormattedPrice());
-        System.out.println(concerto.getFormattedDate());
-        System.out.println(concerto);
 
         System.out.println("Benvenuto. Inserisci il titolo di un nuovo evento");
         Scanner scanner = new Scanner(System.in);
@@ -97,6 +98,7 @@ public class Main {
 
         System.out.println("Adesso ci sono " + event.getBookedSeats() + " posti prenotati, su una capienza di " + event.getMaxSeats() + " posti.");
         System.out.println("Posti disponibili: " + (event.getMaxSeats() - event.getBookedSeats()));
+        scanner.close();
     }
 
 }
