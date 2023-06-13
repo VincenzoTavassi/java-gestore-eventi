@@ -1,0 +1,94 @@
+package org.learning.java.eventi;
+
+
+import java.time.LocalDate;
+
+public class Event {
+
+    private String title;
+    private LocalDate date;
+    private final int MAX_SEATS;
+
+    private static int bookedSeats = 0;
+
+
+// CONSTRUCTOR
+    public Event(String title, LocalDate date, int MAX_SEATS) {
+        if (title.isBlank() || title.length() < 1) throw new RuntimeException("Title must not be blank");
+        else this.title = title;
+        if (!isInvalidDate(date)) this.date = date;
+        else throw new RuntimeException("Event date must be a future date");
+        if (MAX_SEATS < 1) throw new RuntimeException("Available seats must be more than one");
+        else this.MAX_SEATS = MAX_SEATS;
+    }
+
+    // GETTERS -SETTERS
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        if (title.isBlank() || title.length() < 1) throw new RuntimeException("Title must not be blank");
+        this.title = title;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        if (date.isBefore(LocalDate.now())) throw new RuntimeException("Event date must be a future date");
+        else this.date = date;
+    }
+
+    public int getMaxSeats() {
+        return MAX_SEATS;
+    }
+
+    public static int getBookedSeats() {
+        return bookedSeats;
+    }
+
+    // CHECK/CONTROL METHODS
+    public boolean isInvalidDate(LocalDate date) {
+        return date.isBefore(LocalDate.now());
+    }
+
+    public boolean isInvalidEvent() {
+        return isInvalidDate(date) || !HasAvailableSeats();
+    }
+
+    public boolean HasAvailableSeats() {
+        return MAX_SEATS > bookedSeats;
+    }
+
+    // TO STRING OVERRIDE
+    @Override
+    public String toString() {
+        return "Event: " + date + '\'' + " " + title;
+    }
+
+    // EVENT BOOKING METHODS
+
+    public boolean book() {
+        boolean success;
+        if (isInvalidDate(date)) throw new RuntimeException("You are trying to book for a past event");
+        else if (!HasAvailableSeats()) throw new RuntimeException("The event is full");
+        else {
+            bookedSeats++;
+            success = true;
+        }
+            return success;
+    }
+
+    public boolean cancel() {
+        boolean success;
+        if (isInvalidDate(date)) throw new RuntimeException("You are trying to cancel for a past event");
+        else if (bookedSeats < 1) throw new RuntimeException("There are no booked seats to cancel");
+        else {
+            bookedSeats--;
+            success = true;
+        }
+        return success;
+    }
+}
