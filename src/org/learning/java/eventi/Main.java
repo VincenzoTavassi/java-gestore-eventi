@@ -16,7 +16,7 @@ public class Main {
         try {
         date = Event.createDate(rawDate);
         } catch(RuntimeException e) {
-            System.out.println("Data non valida");
+            System.out.println(e.getMessage());
         }
         System.out.println("Inserisci la capienza massima dell'evento");
         int maxSeats = 0;
@@ -24,7 +24,7 @@ public class Main {
             maxSeats = Integer.parseInt(scanner.nextLine());
             event = new Event(title, date, maxSeats);
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Il numero inserito non è valido");
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
@@ -34,7 +34,7 @@ public class Main {
         int numberTobook = Integer.parseInt(scanner.nextLine());
         event.book(numberTobook);
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Il numero inserito non è valido");
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
@@ -46,7 +46,7 @@ public class Main {
         event.cancel(numberToCancel);
         }
         catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Il numero inserito non è valido");
         }
         System.out.println("Adesso ci sono " + event.getBookedSeats() + " posti prenotati, su una capienza di " + event.getMaxSeats() + " posti.");
         System.out.println("Posti disponibili: " + (event.getMaxSeats() - event.getBookedSeats()));
