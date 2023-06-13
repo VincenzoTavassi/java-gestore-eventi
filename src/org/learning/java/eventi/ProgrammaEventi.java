@@ -9,9 +9,9 @@ public class ProgrammaEventi {
     private String title;
     private List<Event> eventList;
 
-    public ProgrammaEventi(String title, List<Event> eventList) {
+    public ProgrammaEventi(String title) {
         this.title = title;
-        this.eventList = new ArrayList<>(eventList);
+        this.eventList = new ArrayList<>();
     }
 
     public void addEvent (Event event) {

@@ -3,12 +3,28 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         Concert concerto = new Concert("Ciao", LocalDate.now().plusDays(20), 200, LocalTime.now().plusHours(4), BigDecimal.valueOf(22.5492));
+        Concert concerto2 = new Concert("Bye bye", LocalDate.now().plusDays(2), 100, LocalTime.now().plusHours(4), BigDecimal.valueOf(40.302));
+        Event evento1 = new Event("Sai come va?", LocalDate.now().plusDays(2), 300);
+        Event evento3 = new Event("tutto bene grazie", LocalDate.now().plusDays(3), 200);
+
+        ProgrammaEventi nuovaLista = new ProgrammaEventi("Lista degli eventi 2023");
+        nuovaLista.addEvent(concerto);
+        nuovaLista.addEvent(concerto2);
+        nuovaLista.addEvent(evento1);
+        nuovaLista.addEvent(evento3);
+        System.out.println(nuovaLista.listEvents());
+        System.out.println(nuovaLista.countEvents());
+        nuovaLista.resetEvents();
+        nuovaLista.countEvents();
+
+
         System.out.println(concerto.getFormattedPrice());
         System.out.println(concerto.getFormattedDate());
         System.out.println(concerto);
