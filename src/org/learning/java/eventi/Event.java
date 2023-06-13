@@ -118,12 +118,12 @@ public class Event {
 
     // CREATE DATE METHOD
     public static LocalDate createDate(String date) {
-        String[] dateElements = date.split("/");
-        int day = Integer.parseInt(dateElements[0]);
-        int month = Integer.parseInt(dateElements[1]);
-        int year = Integer.parseInt((dateElements[2]));
-        return LocalDate.of(year, month, day);
-
+//        String[] dateElements = date.split("/");
+//        int day = Integer.parseInt(dateElements[0]);
+//        int month = Integer.parseInt(dateElements[1]);
+//        int year = Integer.parseInt((dateElements[2]));
+//        return LocalDate.of(year, month, day);
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public static String formatDate (LocalDate date) {
