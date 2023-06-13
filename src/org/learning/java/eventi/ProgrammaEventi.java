@@ -27,17 +27,19 @@ public class ProgrammaEventi {
     }
 
     public int countEvents() {
-        return eventList.size();
+        if (eventList != null) return eventList.size();
+        else throw new NullPointerException();
     }
 
     public void resetEvents() {
-        eventList = null;
+        eventList.removeAll(eventList);
     }
 
     public String listEvents() {
-        String list = null;
+        String list = "";
     for (Event event : eventList) {
-        list += event.getDate() + " - " + event.getTitle() + "\n";
+        if (event instanceof Concert) list += event.getDate() + " - " + event.getTitle() + " (Concerto)" + "\n";
+        else list += event.getDate() + " - " + event.getTitle() + "\n";
     }
     return list;
     }

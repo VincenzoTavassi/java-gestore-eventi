@@ -22,7 +22,7 @@ public class Main {
         System.out.println(nuovaLista.listEvents());
         System.out.println(nuovaLista.countEvents());
         nuovaLista.resetEvents();
-        nuovaLista.countEvents();
+        System.out.println(nuovaLista.countEvents());
 
 
         System.out.println(concerto.getFormattedPrice());
