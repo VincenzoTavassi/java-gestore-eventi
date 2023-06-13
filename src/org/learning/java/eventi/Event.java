@@ -2,6 +2,7 @@ package org.learning.java.eventi;
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Event {
 
@@ -65,7 +66,7 @@ public class Event {
     // TO STRING OVERRIDE
     @Override
     public String toString() {
-        return "Event: " + date + '\'' + " " + title;
+        return "Event: " + formatDate(date) + '-' + " " + title;
     }
 
     // EVENT BOOKING METHODS
@@ -81,6 +82,17 @@ public class Event {
             return success;
     }
 
+    public boolean book(int number) {
+        boolean success;
+        if (isInvalidDate(date)) throw new RuntimeException("You are trying to book for a past event");
+        else if (bookedSeats + number > MAX_SEATS) throw new RuntimeException("You are trying to book more than available seats");
+        else {
+            bookedSeats += number;
+            success = true;
+        }
+        return success;
+    }
+
     public boolean cancel() {
         boolean success;
         if (isInvalidDate(date)) throw new RuntimeException("You are trying to cancel for a past event");
@@ -90,5 +102,34 @@ public class Event {
             success = true;
         }
         return success;
+    }
+
+    public boolean cancel(int number) {
+        boolean success;
+        if (isInvalidDate(date)) throw new RuntimeException("You are trying to cancel for a past event");
+        else if (bookedSeats - number < 0) throw new RuntimeException("Not enough bookings to cancel");
+        else {
+            bookedSeats -= number;
+            success = true;
+        }
+        return success;
+    }
+
+    // CREATE DATE METHOD
+    public static LocalDate createDate(String date) {
+        String[] dateElements = date.split("/");
+        int day = Integer.parseInt(dateElements[0]);
+        int month = Integer.parseInt(dateElements[1]);
+        int year = Integer.parseInt((dateElements[2]));
+        if (day > 31 || day < 1) throw new RuntimeException("Invalid day");
+        if (month > 12 || month < 1) throw new RuntimeException("Invalid month");
+        if (year < 0) throw new RuntimeException("Invalid year");
+        return LocalDate.of(year, month, day);
+
+    }
+
+    public static String formatDate (LocalDate date) {
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return formattedDate;
     }
 }
