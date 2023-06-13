@@ -51,7 +51,7 @@ public class Event {
     }
 
     // CHECK/CONTROL METHODS
-    public boolean isInvalidDate(LocalDate date) {
+    public static boolean isInvalidDate(LocalDate date) {
         return date.isBefore(LocalDate.now());
     }
 
@@ -129,7 +129,6 @@ public class Event {
     }
 
     public static String formatDate (LocalDate date) {
-        String formattedDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        return formattedDate;
+        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 }
