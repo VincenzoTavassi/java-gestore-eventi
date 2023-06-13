@@ -73,7 +73,9 @@ public class Main {
         System.out.println("Quanti posti vuoi prenotare?");
         try {
         int numberTobook = Integer.parseInt(scanner.nextLine());
-        event.book(numberTobook);
+        for (int i = 0; i < numberTobook; i++) {
+            event.book();
+        }
         valid = true;
         } catch (NumberFormatException e) {
             System.out.println("Il numero inserito non è valido");
@@ -94,7 +96,9 @@ public class Main {
             System.out.println("Inserisci il numero di prenotazioni da cancellare");
         int numberToCancel = Integer.parseInt(scanner.nextLine());
         try {
-        event.cancel(numberToCancel);
+            for (int i = 0; i < numberToCancel; i++) {
+                event.cancel();
+            }
         valid = true;
         }
         catch (RuntimeException e) {
