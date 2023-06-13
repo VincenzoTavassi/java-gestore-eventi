@@ -1,10 +1,17 @@
 package org.learning.java.eventi;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
+        Concert concerto = new Concert("Ciao", LocalDate.now().plusDays(20), 200, LocalTime.now().plusHours(4), BigDecimal.valueOf(22.5492));
+        System.out.println(concerto.getFormattedPrice());
+        System.out.println(concerto.getFormattedDate());
+        System.out.println(concerto);
 
         System.out.println("Benvenuto. Inserisci il titolo di un nuovo evento");
         Scanner scanner = new Scanner(System.in);
