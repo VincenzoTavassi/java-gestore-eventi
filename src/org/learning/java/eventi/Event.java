@@ -10,7 +10,7 @@ public class Event {
     private LocalDate date;
     private final int MAX_SEATS;
 
-    private static int bookedSeats = 0;
+    private static int bookedSeats;
 
 
 // CONSTRUCTOR
@@ -21,6 +21,7 @@ public class Event {
         else throw new RuntimeException("Event date must be a future date");
         if (MAX_SEATS < 1) throw new RuntimeException("Available seats must be more than one");
         else this.MAX_SEATS = MAX_SEATS;
+        bookedSeats = 0;
     }
 
     // GETTERS -SETTERS
