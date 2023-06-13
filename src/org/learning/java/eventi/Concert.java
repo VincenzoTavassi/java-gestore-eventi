@@ -43,8 +43,10 @@ public class Concert extends Event {
 
     public String getFormattedDate() {
         LocalDate date = super.getDate();
-        LocalDateTime fulldate = LocalDateTime.parse(String.valueOf(date) + "T" + String.valueOf(hour));
-        return fulldate.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.ITALY));
+        LocalDateTime fulldate = LocalDateTime.parse(date + "T" + hour);
+        String fulldateFormat = fulldate.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.ITALY));
+        String[] fulldateElements = fulldateFormat.split(",");
+        return fulldateElements[0] + " alle" + fulldateElements[1];
     }
 
     @Override
