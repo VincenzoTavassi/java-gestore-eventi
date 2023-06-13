@@ -18,7 +18,8 @@ public class Concert extends Event {
         super(title, date, MAX_SEATS);
         try {
         this.hour = hour;
-        this.price = price;
+        if(price.compareTo(BigDecimal.valueOf(0)) > 0) this.price = price;
+        else throw new EventException("Il prezzo deve essere un numero positivo");
         }
         catch (Exception e) {
             throw new RuntimeException(e);
@@ -37,8 +38,9 @@ public class Concert extends Event {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setPrice(BigDecimal price) throws EventException {
+        if(price.compareTo(BigDecimal.valueOf(0)) > 0) this.price = price;
+        else throw new EventException("Il prezzo deve essere un numero positivo");
     }
 
     public String getFormattedPrice() {
