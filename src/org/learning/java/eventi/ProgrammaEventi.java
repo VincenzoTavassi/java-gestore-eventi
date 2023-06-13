@@ -10,7 +10,8 @@ public class ProgrammaEventi {
     private List<Event> eventList;
 
     public ProgrammaEventi(String title) {
-        this.title = title;
+        if (!title.isBlank() && title.length() > 0) this.title = title;
+        else throw new RuntimeException("Il titolo deve essere valorizzato");
         this.eventList = new ArrayList<>();
     }
 

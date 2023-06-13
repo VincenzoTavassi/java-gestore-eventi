@@ -14,10 +14,15 @@ public class Concert extends Event {
     private BigDecimal price;
 
 
-    public Concert(String title, LocalDate date, int MAX_SEATS, LocalTime hour, BigDecimal price) {
+    public Concert(String title, LocalDate date, int MAX_SEATS, LocalTime hour, BigDecimal price) throws EventException {
         super(title, date, MAX_SEATS);
+        try {
         this.hour = hour;
         this.price = price;
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public LocalTime getHour() {

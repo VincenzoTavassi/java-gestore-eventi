@@ -9,10 +9,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Concert concerto = new Concert("Ciao", LocalDate.now().plusDays(20), 200, LocalTime.now().plusHours(4), BigDecimal.valueOf(22.5492));
-        Concert concerto2 = new Concert("Bye bye", LocalDate.now().plusDays(2), 100, LocalTime.now().plusHours(4), BigDecimal.valueOf(40.302));
-        Event evento1 = new Event("Sai come va?", LocalDate.now().plusDays(2), 300);
-        Event evento3 = new Event("tutto bene grazie", LocalDate.now().plusDays(3), 200);
+//        Concert concerto = new Concert("Ciao", LocalDate.now().plusDays(20), 200, LocalTime.now().plusHours(4), BigDecimal.valueOf(22.5492));
+//        Concert concerto2 = new Concert("Bye bye", LocalDate.now().plusDays(2), 100, LocalTime.now().plusHours(4), BigDecimal.valueOf(40.302));
+//        Event evento1 = new Event("Sai come va?", LocalDate.now().plusDays(2), 300);
+//        Event evento3 = new Event("tutto bene grazie", LocalDate.now().plusDays(3), 200);
 
 //        ProgrammaEventi nuovaLista = new ProgrammaEventi("Lista degli eventi 2023");
 //        nuovaLista.addEvent(concerto);
@@ -59,7 +59,7 @@ public class Main {
             valid = true;
         } catch (NumberFormatException e) {
             System.out.println("Il numero inserito non è valido");
-        } catch (RuntimeException e) {
+        } catch (EventException e) {
             System.out.println(e.getMessage());
         }
         }
@@ -74,7 +74,11 @@ public class Main {
         try {
         int numberTobook = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < numberTobook; i++) {
-            event.book();
+            try {
+            event.book(); }
+            catch (EventException e) {
+                System.out.println(e.getMessage());
+            }
         }
         valid = true;
         } catch (NumberFormatException e) {
@@ -97,7 +101,11 @@ public class Main {
         int numberToCancel = Integer.parseInt(scanner.nextLine());
         try {
             for (int i = 0; i < numberToCancel; i++) {
-                event.cancel();
+                try {
+                    event.cancel();
+                }catch (EventException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         valid = true;
         }
