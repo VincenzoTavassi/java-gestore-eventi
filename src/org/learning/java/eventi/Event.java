@@ -31,7 +31,7 @@ public class Event {
 
     public void setTitle(String title) throws EventException {
         if (title.isBlank() || title.length() < 1) throw new EventException("Title must not be blank");
-        this.title = title;
+        else this.title = title;
     }
 
     public LocalDate getDate() {
@@ -39,7 +39,7 @@ public class Event {
     }
 
     public void setDate(LocalDate date) throws EventException {
-        if (date.isBefore(LocalDate.now())) throw new EventException("Event date must be a future date");
+        if (isInvalidDate(date)) throw new EventException("Event date must be a future date");
         else this.date = date;
     }
 
